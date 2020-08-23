@@ -22,7 +22,6 @@ sudo ip route del default 2>/dev/null
 sudo ip route add default via 192.168.202.1
 echo -e "Odottaa verkkoa\c"
 while true; do
-
     if ping -c 1 -W 1 8.8.8.8 &> /dev/null
     then
         break
