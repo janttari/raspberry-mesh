@@ -15,5 +15,5 @@ Suorita gateway:
 Suorita client:
 
     cd ~/raspberry-mesh
-    ./mesh-client
+    ./meshclient
 
