@@ -1,5 +1,9 @@
 #!/bin/bash
-echo "Käynnistetään mesh-gateway"
+kanava=11 #palvelu tulee tälle wifi-kanavalle
+#---------------------------------------------------------------------------------------
+taajuudet=( 0 2412 2417 2422 2427 2432 2437 2442 2447 2452 2457 2462 2467 2472 2484 )
+mhz=${taajuudet[$kanava]}
+echo "Käynnistetään mesh-gateway taajuudelle $mhz Mhz (wifi-kanava: $kanava)"
 sudo modprobe batman-adv 2>/dev/null
 sudo killall wpa_supplicant
 sudo sysctl -w net.ipv4.ip_forward=1 >/dev/null
@@ -8,9 +12,9 @@ sleep 1
 sudo iw wlan0 set type ibss
 sudo ip link set wlan0 up
 sleep 2
-sudo iw wlan0 ibss join mesh 2462 NOHT #HT20 #Mhz https://en.wikipedia.org/wiki/List_of_WLAN_channels
+sudo iw wlan0 ibss join mesh $mhz NOHT #HT20
 sudo batctl if add wlan0
-sudo ip link set bat0 up 
+sudo ip link set bat0 up
 sudo batctl gw_mode server
 sudo ip addr add 192.168.202.1/24 broadcast 192.168.202.255 dev bat0
 #sleep 1
