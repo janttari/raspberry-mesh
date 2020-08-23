@@ -8,7 +8,7 @@ sleep 1
 sudo iw wlan0 set type ibss
 sudo ip link set wlan0 up
 sleep 2
-sudo iw wlan0 ibss join mesh 2462 NOHT #HT20
+sudo iw wlan0 ibss join mesh 2462 NOHT #HT20 #Mhz https://en.wikipedia.org/wiki/List_of_WLAN_channels
 sudo batctl if add wlan0
 sudo ip link set bat0 up 
 sudo batctl gw_mode server
