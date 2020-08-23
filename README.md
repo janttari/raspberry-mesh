@@ -3,6 +3,7 @@
 
 Asennus: 
 
+    sudo apt update && sudo apt install -y batctl
     cd ~
     git clone https://github.com/janttari/raspberry-mesh.git
 
