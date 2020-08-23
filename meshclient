@@ -26,8 +26,8 @@ while true; do
     then
         break
     fi
-echo -e ".\c"
-sleep 1
+    echo -e ".\c"
+    sleep 1
 done
 echo
 echo Valmis
