@@ -19,3 +19,8 @@ Suorita client:
     cd ~/raspberry-mesh
     ./meshclient
 
+
+
+TODO: 
+
+ -ulkoisella tikulla ja MTU 1532
