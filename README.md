@@ -4,7 +4,7 @@
 Asennus: 
 
     sudo raspi-config # --> Localisation Options --> Change WLAN Country
-    sudo apt update && sudo apt install -y batctl
+    sudo apt update && sudo apt install -y batctl git
     cd ~
     git clone https://github.com/janttari/raspberry-mesh.git
 
