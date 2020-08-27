@@ -14,6 +14,7 @@ sudo iw wlan0 set type ibss
 sudo ip link set wlan0 up
 sleep 2
 sudo iw wlan0 ibss join mesh $mhz NOHT #HT20
+sudo batctl ra BATMAN_V
 sudo batctl if add wlan0
 sudo ip link set bat0 up
 sudo batctl gw_mode client
