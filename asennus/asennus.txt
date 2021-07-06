@@ -7,8 +7,8 @@ sudo systemctl unmask hostapd
 sudo systemctl disable hostapd
 
 
-#disable wpa_supplicant:
-sudo systemctl disable wpa_supplicant.service
+####disable wpa_supplicant:
+###sudo systemctl disable wpa_supplicant.service
 
 #install batctl from source
 cd ~
@@ -18,13 +18,13 @@ cd batctl
 sudo make install
 cd ~
 
-#install authsae: !!!!!EI!!!!
-cd ~
-sudo apt install -y gcc make cmake pkg-config libssl-dev libconfig-dev libnl-3-dev libnl-genl-3-dev
-git clone https://github.com/cozybit/authsae.git
-cd authsae/
-sudo make all
-cd ~
+####install authsae: !!!!!EI VIELÄ!!!!
+###cd ~
+###sudo apt install -y gcc make cmake pkg-config libssl-dev libconfig-dev libnl-3-dev libnl-genl-3-dev
+###git clone https://github.com/cozybit/authsae.git
+###cd authsae/
+###sudo make all
+###cd ~
 
 #reboot now:
 sudo reboot
@@ -66,46 +66,4 @@ address=/gw.wlan/192.168.4.1
 
 #!!!TÄRKEÄ:
 konttiraspi/asenna-hostapdpaketit
-
-#--------------------------------------------------------------
-#mesh up:
-sudo usb_modeswitch -K -W -v 0e8d -p 2870 -Q
-sleep 3
-sudo systemctl start hostapd
-sudo iw dev wlan0 interface add mesh0 type mp addr 00:13:ef:5f:11:fa
-sudo iwconfig mesh0 channel 11
-sudo batctl if add mesh0
-
-sudo batctl n
-iw dev
-
-ONGELMA:
-kesä 18 08:33:25 raspberrypi systemd[1]: Failed to start Advanced IEEE 802.11 AP and IEEE 802.1X/WPA/WPA2/EAP Authenticator.
-
-kun yrittää käynnistää hostapd kun mesh on ibss päällä!
------------------------------------------------------------------------------
-#mesh up:
-sudo usb_modeswitch -K -W -v 0e8d -p 2870 -Q
-sleep 3
-#sudo killall wpa_supplicant
-sudo service hostapd start
-sudo modprobe batman-adv
-sudo iw dev wlan0 interface add mesh0 type mp addr 00:13:ef:5f:11:fa
-
-sudo ip link set mesh0 down
-#sudo iw mesh0 set type mp
-sudo iw dev mesh0 set type ibss
-sudo iwconfig mesh0 channel 11
-sudo ip link set mesh0 up
-
-sudo batctl if add mesh0
-
-sudo batctl n
-iw dev
-
-##sudo iw phy phy0 interface add wlan0 type station
-
-
----------------
-
 
