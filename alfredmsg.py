@@ -91,10 +91,10 @@ if __name__ == "__main__":
         k+=1
         #print("main")
         time.sleep(1)
-        if k==5:
-            al.send(255, "Tama on testi")
-        if k==2:
-            print(getMac("mesh-bridge"))
-            print(getIp4("bat0"))
-            print(getIp6("bat0")[0])
+        # if k==5:
+        #     al.send(255, "Tama on testi")
+        # if k==2:
+        #     print(getMac("mesh-bridge"))
+        #     print(getIp4("bat0"))
+        #     print(getIp6("bat0")[0])
 
