@@ -21,4 +21,4 @@ usage:
 - [ ] installer
 - [ ] mesh.py alfred primary/ secondary gateway/ client?
 - [ ] systemd scripts
-
+- [ ] conf files (wifi channel mesh/ ap, ap name...)
