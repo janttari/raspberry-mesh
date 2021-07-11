@@ -20,3 +20,5 @@ usage:
 - [ ] package(s) create script
 - [ ] installer
 - [ ] mesh.py alfred primary/ secondary gateway/ client?
+- [ ] systemd scripts
+
