@@ -75,7 +75,6 @@ def cback(sender,channel, msg): #callback when new data (changed) in alfdred
 
 # ----------------------------------------------------------------------------------------------
 if __name__ == "__main__":
-    
     k=0
     if len(sys.argv)>=2: #./alfredmsg.py 255 test message
         al=AlfredReceiver(None)
