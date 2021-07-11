@@ -152,6 +152,9 @@ def mesh_down():
 if __name__ == "__main__":
     if len(sys.argv) != 3:
         usage()
+    if sys.argv[1] not in ["gateway", "client"]:
+        print("unknown mode", sys.argv[1])
+        usage()
     if sys.argv[2] == "up":
         mesh_up()
     elif sys.argv[2] == "down":
