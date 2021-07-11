@@ -13,3 +13,9 @@ usage:
 
 
 
+### Todo
+
+- [ ] Bridge hostapd
+- [ ] alfred python class with events and callbacks
+- [ ] package(s) create script
+- [ ] installer
