@@ -1,5 +1,5 @@
 # Raspberry 7612 Mesh 802.11s  
-![](https://raw.githubusercontent.com/janttari/raspberry-mesh/main/doc/kaavio.png)    
+![](https://raw.githubusercontent.com/janttari/raspberry-mesh/master/doc/kaavio.png)    
 wlan1: mediatek 7612 mesh0  
 wlan0: raspberry internal wifi hostapd  
   
