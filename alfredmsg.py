@@ -32,6 +32,11 @@ def getIp6(device: str): #print(getIp4("bat0")) #print(getIp6("bat0")[0])
 # ----------------------------------------------------------------------------------------------
 class AlfredReceiver:
     def __init__(self, callback):
+        try:
+            p=subprocess.check_output(["pgrep","alfred"])
+        except:
+            print("alfred not running! Please run mesh.py first.")
+            quit()
         self.callback=callback
         self.run=True
         t=threading.Thread(target=self.__receiver)
