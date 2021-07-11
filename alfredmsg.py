@@ -3,7 +3,8 @@ import threading, time, subprocess, os, sys
 
 CHANNELS={255,253} #listen these channels
 
-
+#
+# https://downloads.open-mesh.org/batman/manpages/alfred.8.html
 # ----------------------------------------------------------------------------------------------
 MSGDICT={}
 
