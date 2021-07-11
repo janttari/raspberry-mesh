@@ -8,7 +8,7 @@ usage:
 ./mesh.py gateway up  
 ./mesh.py gateway down  
 
-./mesh.py client up
+./mesh.py client up  
 ./mesh.py client down  
 
 
