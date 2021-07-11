@@ -3,7 +3,7 @@
 wlan1: mediatek 7612 mesh0  
 wlan0: raspberry internal wifi hostapd  
   
-  
+### MESH    
 usage:  
 ./mesh.py gateway up  
 ./mesh.py gateway down  
@@ -11,7 +11,10 @@ usage:
 ./mesh.py client up  
 ./mesh.py client down  
 
-
+### ALFRED  
+./alfredmsg.py #start in receiver mode  
+./alfredmsg.py 255 test test test #send message to channel (data type) 255  
+  
 -----
 ### Todo
 
