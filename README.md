@@ -19,3 +19,4 @@ usage:
 - [ ] alfred python class with events and callbacks
 - [ ] package(s) create script
 - [ ] installer
+- [ ] mesh.py alfred primary/ secondary gateway/ client?
