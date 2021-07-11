@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import threading, time, subprocess, os, sys
+import threading, time, subprocess, os, sys, signal
 
 CHANNELS={255,253} #listen these channels (data types)
 
@@ -7,6 +7,15 @@ CHANNELS={255,253} #listen these channels (data types)
 # https://downloads.open-mesh.org/batman/manpages/alfred.8.html
 # ----------------------------------------------------------------------------------------------
 MSGDICT={}
+RUN=True
+
+def signal_handler(sig, frame):
+    print('CTRL+c. Stopping threads...')
+    RUN=False
+    al.stop()
+    sys.exit(0)
+
+signal.signal(signal.SIGINT, signal_handler)
 
 # ----------------------------------------------------------------------------------------------
 def getMac(device: str): #print(getMac("mesh-bridge"))
@@ -92,9 +101,9 @@ if __name__ == "__main__":
 
     else: #./alfredmsg.py
         al=AlfredReceiver(cback)
-    while True:
+    while RUN:
         k+=1
-        #print("main")
+        #print("main", RUN)
         time.sleep(1)
         # if k==5:
         #     al.send(255, "Tama on testi")
