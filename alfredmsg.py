@@ -42,15 +42,19 @@ class AlfredReceiver:
                 cmd='sudo alfred -r '+str(ch)
                 p=subprocess.check_output(cmd.split(' ')) #{ "22:54:99:cc:14:05", "pia Testi 255" },
                 if len(p)>0:
-                    data=p.decode().split(",")[:2]
-                    sender = data[0].split('"')[1]
-                    msg = data[1].split('"')[1]
-                    key = sender + "_" + str(ch) #key 22:54:99:cc:14:05_253 address_channel
-                    if MSGDICT.get(key) is None or MSGDICT.get(key) !=(ch,msg):
-                        MSGDICT[key]=(ch,msg)
-                        #print(MSGDICT)
-                        if self.callback is not None:
-                            self.callback(sender, ch, msg)
+                    lines=p.decode().split("\n")
+                    for line in lines:
+                        if len(line)>0:
+                            #print("LINE",line)
+                            data=line.split(",")[:2]
+                            sender = data[0].split('"')[1]
+                            msg = data[1].split('"')[1]
+                            key = sender + "_" + str(ch) #key 22:54:99:cc:14:05_253 address_channel
+                            if MSGDICT.get(key) is None or MSGDICT.get(key) !=(ch,msg):
+                                MSGDICT[key]=(ch,msg)
+                                #print(MSGDICT)
+                                if self.callback is not None:
+                                    self.callback(sender, ch, msg)
             for i in range(0,5):
                 if not self.run:
                     break
