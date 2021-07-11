@@ -5,7 +5,11 @@ wlan0: raspberry internal wifi hostapd
   
   
 usage:  
-./mesh.py up  
-./mesh.py down  
-  
+./mesh.py gateway up  
+./mesh.py gateway down  
+
+./mesh.py client up
+./mesh.py client down  
+
+
 

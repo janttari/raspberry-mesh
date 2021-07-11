@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import sys, os, time, subprocess
 DEBUG=True
-KANAVA=40 #36
 
 def lokita (*args):
     if DEBUG:
@@ -12,7 +11,7 @@ def lokita (*args):
 
 def usage():
     print("Usage:")
-    print(sys.argv[0]+" {gateway|client} {up|down}")
+    print(sys.argv[0]+" {up|down}")
     quit()
 
 def getserial_mac():
@@ -77,8 +76,6 @@ def mesh_up():
         run_cmd('sudo usb_modeswitch -K -W -v 0e8d -p 2870 -Q')
         wait_for('lsusb | grep "0e8d:7612"')
         lokita("7612 löytyi")
-    lokita('batman V')
-    run_cmd('sudo modprobe batman-adv && sudo batctl ra BATMAN_V')
     lokita("odottaa laitetta wlan1")
     wait_for('iwconfig 2>/dev/null|grep wlan1', True)
     lokita("wlan1 löytyi")
@@ -99,11 +96,10 @@ def mesh_up():
     #wait_for('cat /sys/class/net/mesh0/operstate |grep down', False)
     #time.sleep(1)
     lokita("vaihda kanava wlan1")
-    run_cmd('sudo iwconfig wlan1 channel '+str(KANAVA))
+    run_cmd('sudo iwconfig wlan1 channel 11')
     #time.sleep(1)
     lokita("vaihda kanava mesh0")
-    run_cmd('sudo iwconfig mesh0 channel '+str(KANAVA))
-    run_cmd('sudo ip link set mtu 1532 dev mesh0')
+    run_cmd('sudo iwconfig mesh0 channel 11')
     #time.sleep(1)
     lokita("aja ylös")
     run_cmd('sudo ifconfig mesh0 up')
@@ -113,27 +109,7 @@ def mesh_up():
     time.sleep(0.5)
     lokita('ajetaan batctl')
     run_cmd('sudo batctl if add mesh0')
-    if sys.argv[1] == "gateway":
-        run_cmd('sudo batctl gw_mode server')
-    elif sys.argv[1] == "client":
-        run_cmd('sudo batctl gw_mode server')
-    run_cmd('sudo ip link add name mesh-bridge type bridge')
-    #sudo ip link set dev eth0 master mesh-bridge
-    #time.sleep(1)
-    lokita("lisätään mesh-bridge")
-    run_cmd('sudo ip link set dev bat0 master mesh-bridge')
-    #time.sleep(1)
-    lokita("mesh-bridge up")
-    run_cmd('sudo ifconfig mesh-bridge up')
-    lokita("odotetaan laitetta mesh-bridge")
-    wait_for('cat /sys/class/net/mesh-bridge/operstate 2>/dev/null|grep up', True)
-    time.sleep(2)
-    lokita("ajetaan alfred")
-    os.system('sudo alfred -i mesh-bridge -m >/dev/null 2>/dev/null &')
-    time.sleep(1)
-    alf=check_cmd_bool("pgrep alfred")
-    lokita("Alfredin ajo onnistui", alf)
-    lokita("b.a.t.m.a.n", sys.argv[1], "running...")
+
 
 
 
@@ -144,17 +120,13 @@ def mesh_down():
         quit()
     run_cmd('sudo iw dev mesh0 del')
     run_cmd('sudo batctl if del bat0')
-    run_cmd('sudo ip link del mesh-bridge')
-    run_cmd('sudo rmmod batman_adv')
-    run_cmd('sudo killall -9 alfred 2>/dev/null') #!TODO voisko tehdä nätimmin kenties?
-    lokita("b.a.t.m.a.n", sys.argv[1], "stopped...")
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
+    if len(sys.argv) != 2:
         usage()
-    if sys.argv[2] == "up":
+    if sys.argv[1] == "up":
         mesh_up()
-    elif sys.argv[2] == "down":
+    elif sys.argv[1] == "down":
         mesh_down()
     else:
         usage()

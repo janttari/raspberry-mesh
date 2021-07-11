@@ -1,0 +1,19 @@
+1) @pia
+sudo batctl n
+[B.A.T.M.A.N. adv 2020.4, MainIF/MAC: mesh0/00:00:76:c3:3f:da (bat0/d2:ac:52:e2:d3:78 BATMAN_V)]
+IF             Neighbor              last-seen
+00:00:c1:86:be:a0    0.050s (       33.8) [     mesh0]
+
+2) @pia
+echo -ne "pia Testi 255" | sudo alfred -s 255
+
+3) @pib
+sudo alfred -r 255
+{ "22:55:c5:b1:64:96", "pia Testi 255" },
+------------------------------------------------------------------------------
+
+eli kohta 3 ilmoittaa lähettäjän bat0 osoitteen d2:ac:52:e2:d3:78
+nää voisi jokainen laite lähettää gatewaylle kanavalla 77 muodossa:
+00:00:76:c3:3f:da;d2:ac:52:e2:d3:78;192.168.1.66;0f0f0f0f0f0;pia
+batman;bat0_mac;ip;raspi_serial;hostname
+(raspin serial: cat /proc/cpuinfo | grep Serial | cut -d ' ' -f 2 )
