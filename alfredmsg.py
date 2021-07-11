@@ -41,7 +41,7 @@ class AlfredReceiver:
         while self.run:
             for ch in CHANNELS:
                 cmd='sudo alfred -r '+str(ch)
-                p=subprocess.check_output(cmd.split(' ')) #{ "22:54:99:cc:14:05", "pia Testi 255" },
+                p=subprocess.check_output(cmd.split(' ')) # p <- { "22:54:99:cc:14:05", "pia Testi 255" },
                 if len(p)>0:
                     lines=p.decode().split("\n")
                     for line in lines:
