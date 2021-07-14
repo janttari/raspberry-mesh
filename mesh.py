@@ -2,6 +2,7 @@
 import sys, os, time, subprocess
 DEBUG=True
 KANAVA=40 #36
+#KANAVA=11
 
 def lokita (*args):
     if DEBUG:
