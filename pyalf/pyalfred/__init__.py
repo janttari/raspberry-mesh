@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+#from https://github.com/asdil12/pyalfred
+
 import socket
 import gzip
 from struct import Struct
