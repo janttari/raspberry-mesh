@@ -129,7 +129,10 @@ def mesh_up():
     wait_for('cat /sys/class/net/mesh-bridge/operstate 2>/dev/null|grep up', True)
     time.sleep(2)
     lokita("ajetaan alfred")
-    os.system('sudo alfred -i mesh-bridge -m >/dev/null 2>/dev/null &')
+    if sys.argv[1] == "gateway":
+        os.system('sudo alfred -i mesh-bridge -m >/dev/null 2>/dev/null &')
+    elif sys.argv[1] == "client":
+        os.system('sudo alfred -i mesh-bridge >/dev/null 2>/dev/null &')
     time.sleep(1)
     alf=check_cmd_bool("pgrep alfred")
     lokita("Alfredin ajo onnistui", alf)
